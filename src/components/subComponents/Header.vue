@@ -3,13 +3,6 @@
     <h2>Bienvenue sur mon portfolio</h2>
     <p class="timeDevP" >Je programme depuis</p><br>
     <p class="timeDevP timeDev" @click="changeTimeDevUnit">{{ timeDev }}</p>
-    <!-- <button @click='unitTimeDev = "seconds"'>Secondes</button>
-    <button @click='unitTimeDev = "minutes"'>Minutes</button>
-    <button @click='unitTimeDev = "hours"'>Heures</button>
-    <button @click='unitTimeDev = "days"'>Jours</button>
-    <button @click='unitTimeDev = "months"'>Mois</button>
-    <button @click='unitTimeDev = "years"'>Années</button>
-    <button @click='unitTimeDev = null'>Tout</button> -->
   </div>
 </template>
 
@@ -29,6 +22,7 @@ export default {
     }
   },
   watch: {
+    // when unitTimeDev change, update the timedev element
     unitTimeDev: function () {
       this.updateTimeDev(this.unitTimeDev)
     }
@@ -43,19 +37,20 @@ export default {
       this.timeDev = this.setMomentFormat(this.unitTimeDev)
     },
     changeTimeDevUnit: function () {
+      // timedev elem
       var timeDevP = this.$el.querySelector('.timeDev')
 
-      // Hide timeDev before update
+      // Hide the element before update
       timeDevP.style.opacity = 0
 
       setTimeout(() => {
         // Change the time unit
         this.unitTimeDev = this.unitsTimeDev[++this.unitTimeDevIncrement]
-        // If we reach the end of the array
+        // Reset the array if we reach the end of it
         if (this.unitTimeDevIncrement === this.unitsTimeDev.length) {
           this.unitTimeDevIncrement = 0
         }
-        // Show timeDev
+        // Show the element back
         timeDevP.style.opacity = 1
       }, 350)
     },
@@ -78,12 +73,6 @@ export default {
         case 'hours':
           formattedDuration += ' heures'
           break
-        // case 'minutes':
-        //   formattedDuration += ' minutes'
-        //   break
-        // case 'seconds':
-        //   formattedDuration += ' secondes'
-        //   break
         case null:
         default:
           durationDiff = moment.duration(moment().diff(moment(duration)))

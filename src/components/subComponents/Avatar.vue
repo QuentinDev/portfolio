@@ -23,6 +23,7 @@ export default {
       today: moment().format('E'),
       imageHostUrl: 'http://i.imgur.com/',
       imagesType: '.png',
+      // List of image names by status
       imagesTokensByTimeArray: {
         default: defaultToken,
         sleeping: 'Pv9B53w',
@@ -59,6 +60,7 @@ export default {
       var x = this.timeNow
       var y = this.today
 
+      // return image name depending on the current day and hour
       switch (true) {
         case (x >= 0 && x < 7):
           this.liveStatus = 'sleeping'
@@ -109,14 +111,14 @@ export default {
 
 h1
   margin-bottom: 0
+
 .avatar
   margin-top: 30px
+
 .liveStatus
   animation: glowEffect 1.5s infinite;
-  // filter: drop-shadow(0px 0px 5px red)
+
 .homeImg
-  // border-bottom-left-radius: 50%;
-  // border-bottom-right-radius: 50%;
   transition: $opacityTransition, filter .5s
   filter: drop-shadow(0px 0px 40px $mainColor1)
   &:hover
